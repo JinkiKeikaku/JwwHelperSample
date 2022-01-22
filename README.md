@@ -1,0 +1,2 @@
+# JwwHelperSample
+JwwHelperのサンプルとしてjw_cadの簡単なViewerを作ってみました。32bitでも64bitでも動くはずです。
