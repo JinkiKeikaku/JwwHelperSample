@@ -5,44 +5,43 @@ using System.Drawing;
 
 namespace JwwViewer
 {
+    /// <summary>
+    /// 描画用の情報保持クラス
+    /// </summary>
     class DrawContext
     {
-        public Pen Pen = new(Color.Black);
-        public SizeF PaperSize;
+        public Pen Pen = new(Color.Black, 0.0f);
         public float Scale = 4.0f;
-        JwwHeader mHeader;
+        public SizeF PaperSize = new Size(100, 100);
         public List<BlockEntity> BlockEntities { get;}
-        public PointF Origin { get; set; }
+
 
         public DrawContext(JwwHeader header, List<BlockEntity> blockEntities)
         {
             mHeader = header;
             BlockEntities = blockEntities;
             PaperSize = Helpers.GetPaperSize(header.m_nZumen);
-            Origin = new PointF(PaperSize.Width / 2.0f, PaperSize.Height / 2.0f);
         }
 
-
-        //public void SetHeader(JwwHeader header)
-        //{
-        //    mHeader = header;
-        //    PaperSize = Helpers.GetPaperSize(header.m_nZumen);
-        //}
-
-        public SizeF DocToCanvas(SizeF size)
-        {
-            return new SizeF(size.Width * Scale, size.Height * Scale);
-        }
-
+        /// <summary>
+        /// DocumentとGDI+の半径などの変換。
+        /// </summary>
         public float DocToCanvas(double radius)
         {
-            return (float)radius * Scale;
+            return (float)radius;
         }
 
+        /// <summary>
+        /// DocumentとGDI+の座標変換。Jwwは上が正なのでｙ座標のみ符号を変える。
+        /// </summary>
         public PointF DocToCanvas(double x, double y)
         {
-            return new PointF((float)(x + Origin.X) * Scale, (float)(-y + Origin.Y) * Scale);
+            return new PointF((float)x, (float)-y);
         }
+
+        /// <summary>
+        /// DocumentとGDI+の座標変換。Jwwは上が正なのでｙ座標のみ符号を変える。
+        /// </summary>
         public PointF DocToCanvas(CadPoint p)
         {
             return DocToCanvas(p.X, p.Y);
@@ -57,12 +56,17 @@ namespace JwwViewer
             return -(float)angle;
         }
 
+        /// <summary>
+        /// Jwwのpen番号から描画用のPenオブジェクトに色を割り当てる。
+        /// </summary>
         public void ApplyPenColor(int penColor)
         {
             Pen.Color = ConvertColor(penColor);
         }
 
-        Dictionary<int, Color> mColorMap = null;
+        /// <summary>
+        /// Jwwのpen番号からの色変換。
+        /// </summary>
         public Color ConvertColor(int pen)
         {
             if (mColorMap == null)
@@ -89,6 +93,8 @@ namespace JwwViewer
             return mColorMap.GetValueOrDefault(pen, Color.Black);
         }
 
+        private JwwHeader mHeader;
+        private Dictionary<int, Color> mColorMap = null;
 
     }
 }

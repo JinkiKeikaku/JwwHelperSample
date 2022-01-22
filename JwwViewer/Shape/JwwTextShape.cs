@@ -25,6 +25,7 @@ namespace JwwViewer.Shape
             g.TranslateTransform(p0.X, p0.Y);
             g.RotateTransform((float)d.DocToCanvasAngle(mData.m_degKakudo));
             d.ApplyPenColor(mData.m_nPenColor);
+            //文字は基点が左下なので移動しています。
             g.DrawString(mData.m_string, font, brush, new PointF(0, -fontHeight));
             g.Restore(saved);
         }

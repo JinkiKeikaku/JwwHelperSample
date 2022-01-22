@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace JwwViewer
@@ -11,6 +12,8 @@ namespace JwwViewer
     {
         List<ICadShape> mShapes = new();
         List<BlockEntity> mBlockEntities = new();
+        string[,] LayerName = new string[16, 16];
+        string[] LayerGroupName = new string[16];
 
         DrawContext dc;// = new DrawContext();
 
@@ -50,13 +53,29 @@ namespace JwwViewer
         //dllでjwwファイル読み込み完了後に呼ばれます。これは確認用のコードです。
         void Completed(JwwHelper.JwwReader reader)
         {
+            string[] prefix = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
             mShapes.Clear();
+            Array.Clear(LayerName, 0, 256);
+            Array.Clear(LayerGroupName, 0, 16);
+            var sb = new StringBuilder();
+            for (var j = 0; j < 16; j++)
+            {
+                LayerGroupName[j] = reader.Header.m_aStrGLayName[j];
+                sb.AppendLine($"{prefix[j]} : {LayerGroupName[j]}");
+                for (var i = 0; i < 16; i++)
+                {
+                    LayerName[j, i] = reader.Header.m_aStrLayName[j][i];
+                    sb.AppendLine($"- {prefix[i]} : {LayerName[j, i]}");
+                }
+            }
+            textBox1.Text = sb.ToString();
+
             ConvertBlockEntities(reader);
             var cv = new JwwToShapeConverter(reader.Images);
             foreach (var jd in reader.DataList)
             {
                 var s = cv.Convert(jd);
-                if(s != null) mShapes.Add(s);
+                if (s != null) mShapes.Add(s);
             }
             dc = new DrawContext(reader.Header, mBlockEntities);
             CalcSize();
@@ -90,12 +109,17 @@ namespace JwwViewer
             g.Clear(Color.White);
             if (dc == null) return;
             var saved = g.Save();
-            g.TranslateTransform(panel1.AutoScrollPosition.X, panel1.AutoScrollPosition.Y);
+
+            g.TranslateTransform(
+                dc.Scale * dc.PaperSize.Width / 2 + panel1.AutoScrollPosition.X,
+                dc.Scale * dc.PaperSize.Height / 2 + panel1.AutoScrollPosition.Y
+            );
+            g.ScaleTransform(dc.Scale, dc.Scale);
             foreach (var s in mShapes)
             {
                 s.OnDraw(g, dc);
             }
-//            g.DrawLine(d.Pen, 0, 0, 100, 100);
+            //            g.DrawLine(d.Pen, 0, 0, 100, 100);
             g.Restore(saved);
         }
 
@@ -119,7 +143,7 @@ namespace JwwViewer
         void CalcSize()
         {
             if (dc == null) return;
-            var ps = dc.DocToCanvas(dc.PaperSize);
+            var ps = new Size((int)(dc.PaperSize.Width * dc.Scale), (int)(dc.PaperSize.Height * dc.Scale));
             panel1.AutoScrollMinSize = new Size((int)ps.Width, (int)ps.Height);
             panel1.AutoScrollPosition = new Point(
                 Math.Max(0, (int)ps.Width / 2 - Width / 2),
