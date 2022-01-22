@@ -52,7 +52,7 @@ namespace JwwViewer
         {
             mShapes.Clear();
             ConvertBlockEntities(reader);
-            var cv = new JwwToShapeConverter();
+            var cv = new JwwToShapeConverter(reader.Images);
             foreach (var jd in reader.DataList)
             {
                 var s = cv.Convert(jd);
@@ -69,7 +69,7 @@ namespace JwwViewer
         private void ConvertBlockEntities(JwwHelper.JwwReader reader)
         {
             mBlockEntities.Clear();
-            var cv = new JwwToShapeConverter();
+            var cv = new JwwToShapeConverter(reader.Images);
             //Block図形本体の処理
             foreach (var jb in reader.DataListList)
             {

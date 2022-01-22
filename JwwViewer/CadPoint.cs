@@ -42,6 +42,21 @@ namespace JwwViewer
             this.X = p.X;
             this.Y = p.Y;
         }
+        /// <summary>
+        /// 座標を(0, 0)基準で回転。角度はradian。
+        /// </summary>
+        public void Rotate(double rad)
+        {
+            if (Helpers.FloatEQ((float)rad, 0.0f)) return;
+            var c = Math.Cos(rad);
+            var s = Math.Sin(rad);
+            var xx = X * c - Y * s;
+            var yy = X * s + Y * c;
+            X = xx;
+            Y = yy;
+        }
+
+
 
     }
 }

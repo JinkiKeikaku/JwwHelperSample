@@ -52,9 +52,9 @@ namespace JwwViewer
         /// DocumentとGDI+の角度の変換。Jwwの角度は左回り。GDI+は右回り。
         /// 符号を変えるだけだが座標変換に合わせて間違えないようにあえてこれを使う。
         /// </summary>
-        public double DocToCanvasAngle(double angle)
+        public float DocToCanvasAngle(double angle)
         {
-            return -angle;
+            return -(float)angle;
         }
 
         public void ApplyPenColor(int penColor)

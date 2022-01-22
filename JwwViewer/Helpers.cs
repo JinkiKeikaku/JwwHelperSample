@@ -51,6 +51,11 @@ namespace JwwViewer
             return 180.0 * angleRad / Math.PI;
         }
 
+        public static double DegToRad(double angleDeg)
+        {
+            return angleDeg * Math.PI / 180.0;
+        }
+
         /// <summary>
         /// GDIの色をGDI+の色に変換
         /// </summary>
