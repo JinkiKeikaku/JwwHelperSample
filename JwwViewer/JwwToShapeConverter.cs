@@ -26,18 +26,18 @@ namespace JwwViewer
             }
             return jd switch
             {
-                JwwHelper.JwwSen s => new JwwLineShape(s),
-                JwwHelper.JwwEnko s => new JwwArcShape(s),
-                JwwHelper.JwwSolid s => new JwwSolidShape(s),
-                JwwHelper.JwwMoji s => new JwwTextShape(s),
-                JwwHelper.JwwTen s => new JwwDotShape(s),
-                JwwHelper.JwwBlock s => new JwwBlockShape(s),
+                JwwHelper.JwwSen s => new LineShape(s),
+                JwwHelper.JwwEnko s => new ArcShape(s),
+                JwwHelper.JwwSolid s => new SolidShape(s),
+                JwwHelper.JwwMoji s => new TextShape(s),
+                JwwHelper.JwwTen s => new DotShape(s),
+                JwwHelper.JwwBlock s => new BlockShape(s),
                 _ => null
             };
         }
 
 
-        private JwwImageShape CreateImageShape(JwwHelper.JwwMoji js)
+        private ImageShape CreateImageShape(JwwHelper.JwwMoji js)
         {
             var s0 = js.m_string.Substring(4);
             var s1 = s0.Split(',');
@@ -69,7 +69,7 @@ namespace JwwViewer
                             using var gz = new GZipStream(rs, CompressionMode.Decompress);
                             using var tmp = new MemoryStream();
                             gz.CopyTo(tmp);
-                            var s = new JwwImageShape();
+                            var s = new ImageShape(js);
                             if (double.TryParse(s1[1], out double w) &&
                                 double.TryParse(s1[2], out double h) &&
                                 double.TryParse(s1[6], out double angle))

@@ -5,12 +5,34 @@ using static System.MathF;
 
 namespace JwwViewer.Shape
 {
-    class JwwSolidShape : ICadShape
+    class SolidShape : ICadShape
     {
         JwwHelper.JwwSolid mData;
-        public JwwSolidShape(JwwHelper.JwwSolid data)
+        public SolidShape(JwwHelper.JwwSolid data)
         {
             mData = data;
+        }
+        public JwwHelper.JwwData CreateJwwData()
+        {
+            var s = new JwwHelper.JwwSolid();
+            s.m_nGLayer = mData.m_nGLayer;
+            s.m_nLayer = mData.m_nLayer;
+            s.m_nPenColor = mData.m_nPenColor;
+            s.m_nPenStyle = mData.m_nPenStyle;
+            s.m_nPenWidth = mData.m_nPenWidth;
+            s.m_sFlg = mData.m_sFlg;
+            s.m_start_x = mData.m_start_x;
+            s.m_start_y = mData.m_start_y;
+            s.m_end_x = mData.m_end_x;
+            s.m_end_y = mData.m_end_y;
+            s.m_Color = mData.m_Color;
+            s.m_DPoint2_x = mData.m_DPoint2_x;
+            s.m_DPoint2_y = mData.m_DPoint2_y;
+            s.m_DPoint3_x = mData.m_DPoint3_x;
+            s.m_DPoint3_y = mData.m_DPoint3_y;
+            return s;
+
+            return mData;
         }
         public void OnDraw(Graphics g, DrawContext d)
         {
@@ -132,8 +154,6 @@ namespace JwwViewer.Shape
             }
             g.Restore(saved);
             return;
-
-
         }
     }
 }

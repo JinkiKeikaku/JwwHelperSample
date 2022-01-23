@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JwwViewer.Shape
 {
-    class JwwImageShape : ICadShape
+    class ImageShape : ICadShape
     {
         byte[] mBytes = null;
         Image mImage = null;
@@ -24,7 +24,16 @@ namespace JwwViewer.Shape
                 mImage = null;
             } 
         }
-        public JwwImageShape() { }
+        JwwHelper.JwwMoji mData;
+        public ImageShape(JwwHelper.JwwMoji data)
+        {
+            mData = data;
+        }
+
+        public JwwHelper.JwwData CreateJwwData()
+        {
+            return mData;
+        }
 
         public Image GetImage()
         {

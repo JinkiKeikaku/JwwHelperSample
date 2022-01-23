@@ -2,10 +2,10 @@
 
 namespace JwwViewer.Shape
 {
-    class JwwTextShape : ICadShape
+    class TextShape : ICadShape
     {
         JwwHelper.JwwMoji mData;
-        public JwwTextShape(JwwHelper.JwwMoji data)
+        public TextShape(JwwHelper.JwwMoji data)
         {
             mData = data;
         }
@@ -28,6 +28,27 @@ namespace JwwViewer.Shape
             //文字は基点が左下なので移動しています。
             g.DrawString(mData.m_string, font, brush, new PointF(0, -fontHeight));
             g.Restore(saved);
+        }
+        public JwwHelper.JwwData CreateJwwData()
+        {
+            var s = new JwwHelper.JwwMoji();
+            s.m_nGLayer = mData.m_nGLayer;
+            s.m_nLayer = mData.m_nLayer;
+            s.m_nPenColor = mData.m_nPenColor;
+            s.m_nPenStyle = mData.m_nPenStyle;
+            s.m_nPenWidth = mData.m_nPenWidth;
+            s.m_sFlg = mData.m_sFlg;
+            s.m_start_x = mData.m_start_x;
+            s.m_start_y = mData.m_start_y;
+            s.m_degKakudo = mData.m_degKakudo;
+            s.m_dKankaku = mData.m_dKankaku;
+            s.m_dSizeX = mData.m_dSizeY;
+            s.m_end_x = mData.m_end_x;
+            s.m_end_y = mData.m_end_y;
+            s.m_nMojiShu = mData.m_nMojiShu;
+            s.m_strFontName = mData.m_strFontName;
+            s.m_string = mData.m_string;
+            return s;
         }
     }
 }
