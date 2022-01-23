@@ -31,8 +31,6 @@ namespace JwwViewer.Shape
             s.m_DPoint3_x = mData.m_DPoint3_x;
             s.m_DPoint3_y = mData.m_DPoint3_y;
             return s;
-
-            return mData;
         }
         public void OnDraw(Graphics g, DrawContext d)
         {

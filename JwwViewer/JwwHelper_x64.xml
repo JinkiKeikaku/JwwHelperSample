@@ -4,52 +4,6 @@
         "JwwHelper"
     </assembly>
     <members>
-        <member name="M:JwwHelper.JwwReader.GetBlockSize">
-            <summary>
-ブロック図形数。
-</summary>
-        </member>
-        <member name="M:JwwHelper.JwwReader.Read(System.String)">
-            <summary>
-ファイル読み込み。読み込み完了時はコンストラクタに渡したコールバックが呼ばれる。
-</summary>
-            <param name="path" />
-        </member>
-        <member name="P:JwwHelper.JwwReader.Images">
-            <summary>
-画像同梱のデータ配列。画像は圧縮されている。詳細は本家のドキュメントを見てください。
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwReader.DataListList">
-            <summary>
-ブロック図形実体のリスト
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwReader.DataList">
-            <summary>
-図形のリスト
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwReader.Header">
-            <summary>
-jwwファイルのヘッダー
-</summary>
-        </member>
-        <member name="M:JwwHelper.JwwReader.#ctor(JwwHelper.JwwReader.CompletedCallback)">
-            <summary>
-コンストラクタ。引数としてファイル読み込み完了時に呼ばれるコールバックを渡す。
-</summary>
-        </member>
-        <member name="T:JwwHelper.JwwReader.CompletedCallback">
-            <summary>
-ファイル読み込み完了時に呼ばれるコールバック
-</summary>
-        </member>
-        <member name="T:JwwHelper.JwwReader">
-            <summary>
-jwwファイル読み込みクラス
-</summary>
-        </member>
         <member name="M:JwwHelper.JwwWriter.AddImage(JwwHelper.JwwImage)">
             <summary>
 同梱画像を追加します。画像
@@ -94,6 +48,102 @@ jwwファイル読み込みクラス
         <member name="T:JwwHelper.JwwWriter">
             <summary>
 jwwファイル保存クラス。
+</summary>
+        </member>
+        <member name="T:JwwHelper.JwwSunpou">
+            <summary>
+寸法図形。
+</summary>
+        </member>
+        <member name="T:JwwHelper.JwwSolid">
+            <summary>
+ソリッド図形。円弧ソリッドは頑張ってください。
+</summary>
+        </member>
+        <member name="T:JwwHelper.JwwTen">
+            <summary>
+点図形。
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwEnko.m_bZenEnFlg">
+            <summary>
+たぶん1なら円弧でなく円になる。
+</summary>
+        </member>
+        <member name="T:JwwHelper.JwwEnko">
+            <summary>
+楕円、楕円弧クラス
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwMoji.m_end_y">
+            <summary>
+終点y座標。始点は右下。
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwMoji.m_end_x">
+            <summary>
+終点X座標。始点は右下。
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwMoji.m_start_y">
+            <summary>
+始点y座標。始点は左下。
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwMoji.m_start_x">
+            <summary>
+始点X座標。始点は左下。
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwwSen.#ctor(CDataSen*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+寸法線で使うコンストラクタ。dataは参照を保持して削除されない
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwwReader.GetBlockSize">
+            <summary>
+ブロック図形数。
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwwReader.Read(System.String)">
+            <summary>
+ファイル読み込み。読み込み完了時はコンストラクタに渡したコールバックが呼ばれる。
+</summary>
+            <param name="path" />
+        </member>
+        <member name="P:JwwHelper.JwwReader.Images">
+            <summary>
+画像同梱のデータ配列。画像は圧縮されている。詳細は本家のドキュメントを見てください。
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwReader.DataListList">
+            <summary>
+ブロック図形実体のリスト
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwReader.DataList">
+            <summary>
+図形のリスト
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwReader.Header">
+            <summary>
+jwwファイルのヘッダー
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwwReader.#ctor(JwwHelper.JwwReader.CompletedCallback)">
+            <summary>
+コンストラクタ。引数としてファイル読み込み完了時に呼ばれるコールバックを渡す。
+</summary>
+        </member>
+        <member name="T:JwwHelper.JwwReader.CompletedCallback">
+            <summary>
+ファイル読み込み完了時に呼ばれるコールバック
+</summary>
+        </member>
+        <member name="T:JwwHelper.JwwReader">
+            <summary>
+jwwファイル読み込みクラス
 </summary>
         </member>
         <member name="P:JwwHelper.JwwImage.Buffer">
@@ -173,56 +223,6 @@ DataListの図形を取得するために使う。
         <member name="T:JwwHelper.JwwDataList">
             <summary>
 ブロック図形の実体図形のリスト
-</summary>
-        </member>
-        <member name="T:JwwHelper.JwwSolid">
-            <summary>
-ソリッド図形。円弧ソリッドは頑張ってください。
-</summary>
-        </member>
-        <member name="T:JwwHelper.JwwSunpou">
-            <summary>
-寸法図形。
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwEnko.m_bZenEnFlg">
-            <summary>
-たぶん1なら円弧でなく円になる。
-</summary>
-        </member>
-        <member name="T:JwwHelper.JwwEnko">
-            <summary>
-楕円、楕円弧クラス
-</summary>
-        </member>
-        <member name="T:JwwHelper.JwwTen">
-            <summary>
-点図形。
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwMoji.m_end_y">
-            <summary>
-終点y座標。始点は右下。
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwMoji.m_end_x">
-            <summary>
-終点X座標。始点は右下。
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwMoji.m_start_y">
-            <summary>
-始点y座標。始点は左下。
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwMoji.m_start_x">
-            <summary>
-始点X座標。始点は左下。
-</summary>
-        </member>
-        <member name="M:JwwHelper.JwwSen.#ctor(CDataSen*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-            <summary>
-寸法線で使うコンストラクタ。dataは参照を保持して削除されない
 </summary>
         </member>
         <member name="P:JwwHelper.JwwHeader.m_adMojiKijunZureY">
@@ -4971,7 +4971,7 @@ it creates encapsulated IUIAnimationStoryboard object.
             <param name="nGroupID">Specifies Group ID.</param>
             <param name="bEnable">Specifies whether to set or release a handler.</param>
         </member>
-        <member name="M:CAnimationController.EnablePriorityComparisonHandler(System.UInt32!System.Runtime.CompilerServices.IsLong)">
+        <member name="M:CAnimationController.EnablePriorityComparisonHandler(System.UInt64)">
             <summary>
 Sets or releases the priority comparison handler to call to determine whether a scheduled storyboard can be cancelled,
 concluded, trimmed or compressed.
@@ -5460,7 +5460,7 @@ subscribed this animation object to events (ValueChanged or IntegerValueChanged)
 </remarks>
             <param name="rect">Specifies new default values for left, top, right and bottom.</param>
         </member>
-        <member name="M:CAnimationRect.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.UInt32,System.UInt32,System.UInt32!System.Runtime.CompilerServices.IsLong)">
+        <member name="M:CAnimationRect.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.UInt32,System.UInt32,System.UInt64)">
             <summary>
 Constructs an animation rect object.
 </summary>
@@ -5476,7 +5476,7 @@ later at runtime using SetDefaultValue and SetID.
             <param name="nObjectID">Specifies Object ID.</param>
             <param name="dwUserData">Specifies user-defined data.</param>
         </member>
-        <member name="M:CAnimationRect.#ctor(CPoint!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CSize!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.UInt32,System.UInt32,System.UInt32!System.Runtime.CompilerServices.IsLong)">
+        <member name="M:CAnimationRect.#ctor(CPoint!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CSize!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.UInt32,System.UInt32,System.UInt64)">
             <summary>
 Constructs an animation rect object.
 </summary>
@@ -5490,7 +5490,7 @@ later at runtime using SetDefaultValue and SetID.
             <param name="nObjectID">Specifies Object ID.</param>
             <param name="dwUserData">Specifies user-defined data.</param>
         </member>
-        <member name="M:CAnimationRect.#ctor(CRect!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.UInt32,System.UInt32,System.UInt32!System.Runtime.CompilerServices.IsLong)">
+        <member name="M:CAnimationRect.#ctor(CRect!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.UInt32,System.UInt32,System.UInt64)">
             <summary>
 Constructs an animation rect object.
 </summary>
@@ -5659,7 +5659,7 @@ subscribed this animation object to events (ValueChanged or IntegerValueChanged)
 </remarks>
             <param name="color">Specifies new default values for red, green and blue components.</param>
         </member>
-        <member name="M:CAnimationColor.#ctor(System.UInt32!System.Runtime.CompilerServices.IsLong,System.UInt32,System.UInt32,System.UInt32!System.Runtime.CompilerServices.IsLong)">
+        <member name="M:CAnimationColor.#ctor(System.UInt32!System.Runtime.CompilerServices.IsLong,System.UInt32,System.UInt32,System.UInt64)">
             <summary>
 Constructs an animation color object.
 </summary>
@@ -5806,7 +5806,7 @@ subscribed this animation object to events (ValueChanged or IntegerValueChanged)
 </remarks>
             <param name="szDefault">Specifies new default size.</param>
         </member>
-        <member name="M:CAnimationSize.#ctor(CSize!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.UInt32,System.UInt32,System.UInt32!System.Runtime.CompilerServices.IsLong)">
+        <member name="M:CAnimationSize.#ctor(CSize!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.UInt32,System.UInt32,System.UInt64)">
             <summary>
 Constructs an animation size object.
 </summary>
@@ -5949,7 +5949,7 @@ subscribed this animation object to events (ValueChanged or IntegerValueChanged)
 </remarks>
             <param name="ptDefault">Specifies the default point value.</param>
         </member>
-        <member name="M:CAnimationPoint.#ctor(CPoint!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.UInt32,System.UInt32,System.UInt32!System.Runtime.CompilerServices.IsLong)">
+        <member name="M:CAnimationPoint.#ctor(CPoint!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.UInt32,System.UInt32,System.UInt64)">
             <summary>
 Constructs CAnimationPoint object.
 </summary>
@@ -6101,7 +6101,7 @@ methods again.
 </remarks>
             <param name="dblDefaultValue">Specifies the default value.</param>
         </member>
-        <member name="M:CAnimationValue.#ctor(System.Double,System.UInt32,System.UInt32,System.UInt32!System.Runtime.CompilerServices.IsLong)">
+        <member name="M:CAnimationValue.#ctor(System.Double,System.UInt32,System.UInt32,System.UInt64)">
             <summary>
 Constructs a CAnimationValue object.
 </summary>
@@ -6294,7 +6294,7 @@ Detaches an animation object from parent animation controller.
 This method is used internally.
 </remarks>
         </member>
-        <member name="M:CAnimationBaseObject.SetUserData(System.UInt32!System.Runtime.CompilerServices.IsLong)">
+        <member name="M:CAnimationBaseObject.SetUserData(System.UInt64)">
             <summary>
 Sets user-defined data.
 </summary>
@@ -6331,7 +6331,7 @@ associated with each animation variable.
 The destructor. Called when an animation object is being destroyed.
 </summary>
         </member>
-        <member name="M:CAnimationBaseObject.#ctor(System.UInt32,System.UInt32,System.UInt32!System.Runtime.CompilerServices.IsLong)">
+        <member name="M:CAnimationBaseObject.#ctor(System.UInt32,System.UInt32,System.UInt64)">
             <summary>
 Constructs an animation object.
 </summary>
