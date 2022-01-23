@@ -16,7 +16,7 @@ namespace JwwViewer
         string[,] LayerName = new string[16, 16];
         string[] LayerGroupName = new string[16];
 
-        DrawContext dc;// = new DrawContext();
+        DrawContext DrawContext;// = new DrawContext();
 
         public Form1()
         {
@@ -35,20 +35,20 @@ namespace JwwViewer
             {
                 if (Path.GetExtension(path) == ".jww")
                 {
-                    //JwwReaderが読み込み用のクラス。Completedは読み込み完了時に実行される関数。
-                    //"d:\\ccc\\"はファイルに同梱画像があった時に画像が保存されるフォルダ。
-                    using var reader = new JwwHelper.JwwReader(Completed);
-                    reader.Read(path);
+                    //JwwReaderが読み込み用のクラス。
+                    using var reader = new JwwHelper.JwwReader();
+                    //Completedは読み込み完了時に実行される関数。
+                    reader.Read(path, Completed);
                 }
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Error");
-                dc = null;
+                DrawContext = null;
                 panel1.Invalidate();
             }
         }
-        //dllでjwwファイル読み込み完了後に呼ばれます。これは確認用のコードです。
+        //dllでjwwファイル読み込み完了後に呼ばれます。
         private void Completed(JwwHelper.JwwReader reader)
         {
             mShapes.Clear();
@@ -56,14 +56,14 @@ namespace JwwViewer
             ConvertBlockEntities(reader);
             var cv = new JwwToShapeConverter(reader.Images);
             //図形を変換して配列に入れる。表示するだけなら変換しなくてなんとかなるが、
-            //普通は利用する時に何らかの変換がいるから。
+            //普通は利用する時に何らかの変換がいる。
             foreach (var jd in reader.DataList)
             {
                 var s = cv.Convert(jd);
                 if (s != null) mShapes.Add(s);
             }
-            //dcは表示する時に使う情報保持オブジェクト。
-            dc = new DrawContext(reader.Header, mBlockEntities);
+            //DrawContextは表示する時に使う情報保持オブジェクト。
+            DrawContext = new DrawContext(reader.Header, mBlockEntities);
             //スクロールバーなんかの設定。
             CalcSize();
             //panel1を無効化してpanel1のpaintが呼ばれる。
@@ -190,32 +190,32 @@ namespace JwwViewer
         {
             var g = e.Graphics;
             g.Clear(Color.White);
-            if (dc == null) return;
+            if (DrawContext == null) return;
             var saved = g.Save();
 
             g.TranslateTransform(
-                dc.Scale * dc.PaperSize.Width / 2 + panel1.AutoScrollPosition.X,
-                dc.Scale * dc.PaperSize.Height / 2 + panel1.AutoScrollPosition.Y
+                DrawContext.Scale * DrawContext.PaperSize.Width / 2 + panel1.AutoScrollPosition.X,
+                DrawContext.Scale * DrawContext.PaperSize.Height / 2 + panel1.AutoScrollPosition.Y
             );
-            g.ScaleTransform(dc.Scale, dc.Scale);
+            g.ScaleTransform(DrawContext.Scale, DrawContext.Scale);
             foreach (var s in mShapes)
             {
-                s.OnDraw(g, dc);
+                s.OnDraw(g, DrawContext);
             }
             g.Restore(saved);
         }
 
         private void panel1_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            if (dc == null) return;
+            if (DrawContext == null) return;
             /// マウスホイールでは拡大縮小のみ行う。
             if (e.Delta < 0)
             {
-                dc.Scale *= 2 / 3.0f;
+                DrawContext.Scale *= 2 / 3.0f;
             }
             else
             {
-                dc.Scale *= 1.5f;
+                DrawContext.Scale *= 1.5f;
             }
             CalcSize();
             panel1.Invalidate();
@@ -226,8 +226,8 @@ namespace JwwViewer
         /// </summary>
         private void CalcSize()
         {
-            if (dc == null) return;
-            var ps = new Size((int)(dc.PaperSize.Width * dc.Scale), (int)(dc.PaperSize.Height * dc.Scale));
+            if (DrawContext == null) return;
+            var ps = new Size((int)(DrawContext.PaperSize.Width * DrawContext.Scale), (int)(DrawContext.PaperSize.Height * DrawContext.Scale));
             panel1.AutoScrollMinSize = new Size((int)ps.Width, (int)ps.Height);
             panel1.AutoScrollPosition = new Point(
                 Math.Max(0, (int)ps.Width / 2 - Width / 2),

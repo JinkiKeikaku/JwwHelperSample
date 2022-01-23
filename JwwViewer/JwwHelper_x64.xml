@@ -105,9 +105,9 @@ jwwファイル保存クラス。
 ブロック図形数。
 </summary>
         </member>
-        <member name="M:JwwHelper.JwwReader.Read(System.String)">
+        <member name="M:JwwHelper.JwwReader.Read(System.String,JwwHelper.JwwReader.CompletedCallback)">
             <summary>
-ファイル読み込み。読み込み完了時はコンストラクタに渡したコールバックが呼ばれる。
+ファイル読み込み。読み込み完了時は渡したコールバックが呼ばれる。
 </summary>
             <param name="path" />
         </member>
@@ -131,9 +131,9 @@ jwwファイル保存クラス。
 jwwファイルのヘッダー
 </summary>
         </member>
-        <member name="M:JwwHelper.JwwReader.#ctor(JwwHelper.JwwReader.CompletedCallback)">
+        <member name="M:JwwHelper.JwwReader.#ctor">
             <summary>
-コンストラクタ。引数としてファイル読み込み完了時に呼ばれるコールバックを渡す。
+コンストラクタ。
 </summary>
         </member>
         <member name="T:JwwHelper.JwwReader.CompletedCallback">
