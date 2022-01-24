@@ -1,6 +1,6 @@
 # JwwHelperの使い方
 ## 準備
-- jwwファイルのデータ形式を[http://www.jwcad.net/jwdatafmt.txt](http://www.jwcad.net/jwdatafmt.txt)で確認しましょう。JwwHelperの図形はこのファイルで説明に準拠しています。ただし、クラス名はCDataSenをJwwSenと言うように変更しています。また、座標などの構造体メンバは`p.x`のようなメンバを`p_x`のように変数に分解しています（C++/CLIで構造体のプロパティ公開の方法がわからなかったため）。
+- jwwファイルのデータ形式を[http://www.jwcad.net/jwdatafmt.txt](http://www.jwcad.net/jwdatafmt.txt)で確認しましょう。JwwHelperの図形はこのファイルの説明に準拠しています。ただし、クラス名はCDataSenをJwwSenと言うように変更しています。また、座標などの構造体メンバは`p.x`のようなメンバを`p_x`のように変数に分解しています（C++/CLIで構造体のプロパティ公開の方法がわからなかったため）。
 - 32ビット環境ではJwwHelper_x86.dll、64ビット環境ではJwwHelper_x64.dllをプロジェクトに追加し参照を追加します。
 
 
