@@ -50,7 +50,7 @@ foreach (var dataList in reader.DataListList)
 {
     dataList.EnumerateDataList(jwwData =>
     {
-      switch(jwData){
+      switch(jwwData){
         case JwwSen sen:
         //線
           ...
