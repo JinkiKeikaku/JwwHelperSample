@@ -61,7 +61,7 @@ foreach (var dataList in reader.DataListList)
     });
 }
 ~~~
-####同梱画像の読み込みについて
+#### 同梱画像の読み込みについて
 `JwwImage`オブジェクトが同梱画像の実体です。主なプロパティーは
 - `string ImageName`
   画像ファイル名。
