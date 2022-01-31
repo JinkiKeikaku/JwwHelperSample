@@ -39,6 +39,7 @@ namespace JwwViewer
 
         private ImageShape CreateImageShape(JwwHelper.JwwMoji js)
         {
+            if (mImages == null) return null;
             var s0 = js.m_string.Substring(4);
             var s1 = s0.Split(',');
             var name = s1[0];

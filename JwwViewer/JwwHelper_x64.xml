@@ -4,6 +4,53 @@
         "JwwHelper"
     </assembly>
     <members>
+        <member name="P:JwwHelper.JwsReader.DataListList">
+            <summary>
+ブロック図形実体のリスト
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwsReader.DataList">
+            <summary>
+図形のリスト
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwsReader.Header">
+            <summary>
+jwsファイルのヘッダー
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwsWriter.AddDataList(JwwHelper.JwwDataList)">
+            <summary>
+ブロック図形の実体を追加します。
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwsWriter.AddData(JwwHelper.JwwData)">
+            <summary>
+書き込む図形を追加します。
+</summary>
+            <param name="data" />
+        </member>
+        <member name="M:JwwHelper.JwsWriter.Write(System.String)">
+            <summary>
+ファイル書き出し
+</summary>
+            <param name="path" />
+        </member>
+        <member name="M:JwwHelper.JwsWriter.#ctor">
+            <summary>
+コンストラクタ
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwsWriter.Header">
+            <summary>
+ヘッダー
+</summary>
+        </member>
+        <member name="T:JwwHelper.JwsWriter">
+            <summary>
+jwsファイル保存クラス。
+</summary>
+        </member>
         <member name="M:JwwHelper.JwwWriter.AddImage(JwwHelper.JwwImage)">
             <summary>
 同梱画像を追加します。画像

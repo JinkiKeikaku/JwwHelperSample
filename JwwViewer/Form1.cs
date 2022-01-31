@@ -38,7 +38,14 @@ namespace JwwViewer
                     //JwwReaderが読み込み用のクラス。
                     using var reader = new JwwHelper.JwwReader();
                     //Completedは読み込み完了時に実行される関数。
-                    reader.Read(path, Completed);
+                    reader.Read(path, CompletedJww);
+                }
+                else if (Path.GetExtension(path) == ".jws")
+                {
+                    //JwsReaderが読み込み用のクラス。
+                    using var reader = new JwwHelper.JwsReader();
+                    //Completedは読み込み完了時に実行される関数。
+                    reader.Read(path, CompletedJws);
                 }
             }
             catch (Exception exception)
@@ -48,12 +55,12 @@ namespace JwwViewer
                 panel1.Invalidate();
             }
         }
-        //dllでjwwファイル読み込み完了後に呼ばれます。
-        private void Completed(JwwHelper.JwwReader reader)
+        //jwwファイル読み込み完了後に呼ばれます。
+        private void CompletedJww(JwwHelper.JwwReader reader)
         {
             mShapes.Clear();
-            LayerNameToTextBox(reader.Header);
-            ConvertBlockEntities(reader);
+            JwwInfoToTextBox(reader.Header);
+            ConvertBlockEntities(reader.DataListList, reader.Images);
             var cv = new JwwToShapeConverter(reader.Images);
             //図形を変換して配列に入れる。表示するだけなら変換しなくてなんとかなるが、
             //普通は利用する時に何らかの変換がいる。
@@ -64,7 +71,30 @@ namespace JwwViewer
             }
             //DrawContextは表示する時に使う情報保持オブジェクト。
             DrawContext = new DrawContext(reader.Header, mBlockEntities);
-            //スクロールバーなんかの設定。
+            //スクロールバーなどの設定。
+            CalcSize();
+            //panel1を無効化してpanel1のpaintが呼ばれる。
+            panel1.Invalidate();
+        }
+
+        //jwsファイル読み込み完了後に呼ばれます。
+        private void CompletedJws(JwwHelper.JwsReader reader)
+        {
+            mShapes.Clear();
+            JwsInfoToTextBox(reader);
+            //Jwsは同梱画像はおそらくない。
+            ConvertBlockEntities(reader.DataListList, null);
+            var cv = new JwwToShapeConverter(null);
+            //図形を変換して配列に入れる。表示するだけなら変換しなくてなんとかなるが、
+            //普通は利用する時に何らかの変換がいる。
+            foreach (var jd in reader.DataList)
+            {
+                var s = cv.Convert(jd);
+                if (s != null) mShapes.Add(s);
+            }
+            //DrawContextは表示する時に使う情報保持オブジェクト。
+            DrawContext = new DrawContext(null, mBlockEntities);
+            //スクロールバーなどの設定。
             CalcSize();
             //panel1を無効化してpanel1のpaintが呼ばれる。
             panel1.Invalidate();
@@ -73,7 +103,7 @@ namespace JwwViewer
         /// <summary>
         /// レイヤ名をテキストボックスに入れる。
         /// </summary>
-        private void LayerNameToTextBox(JwwHelper.JwwHeader header)
+        private void JwwInfoToTextBox(JwwHelper.JwwHeader header)
         {
             string[] prefix = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
             Array.Clear(LayerName, 0, 256);
@@ -92,15 +122,43 @@ namespace JwwViewer
             textBox1.Text = sb.ToString();
         }
 
+        private void JwsInfoToTextBox(JwwHelper.JwsReader reader)
+        {
+            var header = reader.Header;
+            var sb = new StringBuilder();
+            sb.AppendLine("===Bounds===");
+            sb.AppendLine($"({header.m_Bounds_Left}, {header.m_Bounds_Bottom}, {header.m_Bounds_Right}, {header.m_Bounds_Top})");
+            sb.AppendLine("===Origin====");
+            sb.AppendLine($"({header.m_Origin_x}, {header.m_Origin_y})");
+            sb.AppendLine("===Scales===");
+            foreach (var s in header.m_Scales)
+            {
+                sb.AppendLine(s.ToString());
+            }
+            sb.AppendLine("===Blocks===");
+            sb.AppendLine("Size of blocks:" + reader.GetBlockSize());
+            sb.AppendLine("==Shapes===");
+            sb.AppendLine("Size of shapes:" + reader.DataList.Count);
+
+            //var dataList = reader.DataList;
+            //foreach (var s in dataList)
+            //{
+            //    sb.Append(s.GetType().Name);
+            //    sb.AppendLine(s.ToString());
+            //}
+            textBox1.Text = sb.ToString();
+        }
+
+
         /// <summary>
         /// 読み込み用のブロック図形実体の処理。
         /// </summary>
-        private void ConvertBlockEntities(JwwHelper.JwwReader reader)
+        private void ConvertBlockEntities(List<JwwHelper.JwwDataList> dataListList, JwwHelper.JwwImage[] images)
         {
             mBlockEntities.Clear();
-            var cv = new JwwToShapeConverter(reader.Images);
+            var cv = new JwwToShapeConverter(images);
             //Block図形本体の処理
-            foreach (var jb in reader.DataListList)
+            foreach (var jb in dataListList)
             {
                 var be = new BlockEntity(jb.m_nNumber);
                 jb.EnumerateDataList(x =>
@@ -169,10 +227,46 @@ namespace JwwViewer
             w.Write(path);
         }
 
+
+        /// <summary>
+        /// Jws保存処理。２本の線を書き出し。
+        /// </summary>
+        private void SaveJwsTest(string path)
+        {
+            var w = new JwwHelper.JwsWriter();
+            w.Header.m_Bounds_Left = -50;
+            w.Header.m_Bounds_Bottom = -30;
+            w.Header.m_Bounds_Right = 50;
+            w.Header.m_Bounds_Top = 30;
+            w.Header.m_Origin_x = 0.0;
+            w.Header.m_Origin_y = 0.0;
+            for (var i = 0; i < w.Header.m_Scales.Length; i++)
+            {
+                w.Header.m_Scales[i] = 1;
+            }
+            var s1 = new JwwHelper.JwwSen()
+            {
+                m_start_x = -50,
+                m_start_y = -30,
+                m_end_x = 50,
+                m_end_y = 30,
+            };
+            w.AddData(s1);
+            var s2 = new JwwHelper.JwwSen()
+            {
+                m_start_x = -50,
+                m_start_y = 30,
+                m_end_x = 50,
+                m_end_y = -30,
+            };
+            w.AddData(s2);
+            w.Write(path);
+        }
+
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var d = new OpenFileDialog();
-            d.Filter = "Jww Files|*.jww|All Files|*.*";
+            d.Filter = "Jww Files|*.jww|Jws Files|*.jws|All Files|*.*";
             if (d.ShowDialog() != DialogResult.OK) return;
             OpenFile(d.FileName);
         }
@@ -185,6 +279,13 @@ namespace JwwViewer
             SaveFile(d.FileName);
         }
 
+        private void jwsSaveTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var d = new SaveFileDialog();
+            d.Filter = "Jws Files|*.jws|All Files|*.*";
+            if (d.ShowDialog() != DialogResult.OK) return;
+            SaveJwsTest(d.FileName);
+        }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -239,5 +340,8 @@ namespace JwwViewer
         {
             CalcSize();
         }
+
+
+
     }
 }

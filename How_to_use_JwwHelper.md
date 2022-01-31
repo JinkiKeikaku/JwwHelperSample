@@ -3,8 +3,8 @@
 - jwwファイルのデータ形式を[http://www.jwcad.net/jwdatafmt.txt](http://www.jwcad.net/jwdatafmt.txt)で確認しましょう。JwwHelperの図形はこのファイルの説明に準拠しています。ただし、クラス名はCDataSenをJwwSenと言うように変更しています。また、座標などの構造体メンバは`p.x`のようなメンバを`p_x`のように変数に分解しています（C++/CLIで構造体のプロパティ公開の方法がわからなかったため）。
 - 32ビット環境ではJwwHelper_x86.dll、64ビット環境ではJwwHelper_x64.dllをプロジェクトに追加し参照を追加します。
 
-
-## 読み込み
+## Jwwファイル
+### 読み込み
 JwwReaderオブジェクトを作りReadメソッドを呼び出します。
   ~~~
     using var reader = new JwwHelper.JwwReader();
@@ -43,7 +43,7 @@ JwwReaderには以下のプロパティーがあります。
   ブロック図形の実体
 - `JwwImage[] Images`
   同梱画像の配列。
-####ブロック図形実体の読み込みについて
+#### ブロック図形実体の読み込みについて
 `JwwDataList`がブロック図形の実体です。図形の参照には`EnumerateDataList`メソッドを使います。
 ~~~
 foreach (var dataList in reader.DataListList)
@@ -69,7 +69,7 @@ foreach (var dataList in reader.DataListList)
   画像のデータです。画像には圧縮と非圧縮形式があります。JwwHelperでは圧縮の展開は行いません。使用するアプリ側で対応してください。JwwHelperSampleでは圧縮形式の展開を行っているので参考にしてください（非圧縮形式は見たことがないのでJwwHelperSampleでは実装していません）。
 
 
-## 書き込み
+### 書き込み
 まず、JwwWriterオブジェクトを作りヘッダーを初期化します。
 ~~~
   var w = new JwwHelper.JwwWriter();
@@ -85,6 +85,16 @@ foreach (var dataList in reader.DataListList)
 w.Write(path);
 ~~~
 `path`は保存先のパスです。
+
+## Jwsファイル
+### Jwwファイルの場合との違い
+使用法はほとんどJwwファイルの場合と同じですが以下の違いがあります。
+- 使用するクラスがJwsReaderとJwsWriterになります。
+- JwsはJwwとHeaderが異なります。Jwsのヘッダーには図形を囲む領域と原点と縮尺（16個）と使用目的が不明な項目があります。
+- Jwsファイル書き込み時のヘッダー初期化はヘッダーのプロパティーで行います。Jwwの時のようなテンプレートは使いません。
+- Jwsには同梱画像がありません。
+
+Jwsファイルは仕様が公開されていないために不具合があるかもしれません。もしもJwsファイルの仕様がわかる人がいたら教えてください。
 
 ## 注意点
 - JwwHelperSampleのJwwViewerでは環境に応じて32bitか64bitのどちらのdllを使うか切り替えています。Program.cs内のMain関数を参照してください。

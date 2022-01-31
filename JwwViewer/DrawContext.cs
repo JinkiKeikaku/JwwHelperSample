@@ -16,11 +16,12 @@ namespace JwwViewer
         public List<BlockEntity> BlockEntities { get;}
 
 
+
         public DrawContext(JwwHeader header, List<BlockEntity> blockEntities)
         {
             mHeader = header;
             BlockEntities = blockEntities;
-            PaperSize = Helpers.GetPaperSize(header.m_nZumen);
+            PaperSize = header == null ? new SizeF(297, 210) : Helpers.GetPaperSize(header.m_nZumen);
         }
 
         /// <summary>
@@ -69,6 +70,7 @@ namespace JwwViewer
         /// </summary>
         public Color ConvertColor(int pen)
         {
+            if (mHeader == null) return Color.Black;
             if (mColorMap == null)
             {
                 mColorMap = new Dictionary<int, Color>();
