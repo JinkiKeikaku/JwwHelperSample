@@ -4,21 +4,6 @@
         "JwwHelper"
     </assembly>
     <members>
-        <member name="P:JwwHelper.JwsReader.DataListList">
-            <summary>
-ブロック図形実体のリスト
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwsReader.DataList">
-            <summary>
-図形のリスト
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwsReader.Header">
-            <summary>
-jwsファイルのヘッダー
-</summary>
-        </member>
         <member name="M:JwwHelper.JwsWriter.AddDataList(JwwHelper.JwwDataList)">
             <summary>
 ブロック図形の実体を追加します。
@@ -49,6 +34,21 @@ jwsファイルのヘッダー
         <member name="T:JwwHelper.JwsWriter">
             <summary>
 jwsファイル保存クラス。
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwsReader.DataListList">
+            <summary>
+ブロック図形実体のリスト
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwsReader.DataList">
+            <summary>
+図形のリスト
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwsReader.Header">
+            <summary>
+jwsファイルのヘッダー
 </summary>
         </member>
         <member name="M:JwwHelper.JwwWriter.AddImage(JwwHelper.JwwImage)">
@@ -95,6 +95,33 @@ jwsファイル保存クラス。
         <member name="T:JwwHelper.JwwWriter">
             <summary>
 jwwファイル保存クラス。
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwwClipWriter.AddDataList(JwwHelper.JwwDataList)">
+            <summary>
+ブロック図形の実体を追加します。
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwwClipWriter.AddData(JwwHelper.JwwData)">
+            <summary>
+書き込む図形を追加します。
+</summary>
+            <param name="data" />
+        </member>
+        <member name="M:JwwHelper.JwwClipWriter.Write">
+            <summary>
+書き出し
+</summary>
+            <param name="path" />
+        </member>
+        <member name="M:JwwHelper.JwwClipWriter.#ctor">
+            <summary>
+コンストラクタ
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwClipWriter.Header">
+            <summary>
+ヘッダー
 </summary>
         </member>
         <member name="T:JwwHelper.JwwSunpou">
@@ -191,85 +218,6 @@ jwwファイルのヘッダー
         <member name="T:JwwHelper.JwwReader">
             <summary>
 jwwファイル読み込みクラス
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwImage.Buffer">
-            <summary>
-イメージバッファー
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwImage.Size">
-            <summary>
-イメージバッファーのサイズ
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwImage.ImageName">
-            <summary>
-ファイル名
-</summary>
-        </member>
-        <member name="M:JwwHelper.JwwImage.Create(System.String,System.Byte[])">
-            <summary>
-                <para>オブジェクト作成。イメージは圧縮される。[imageName]の拡張子は圧縮ありのため".gz"を付ける。</para>
-                <para>画像データはおそらくWindowsのBitmapしか使えない。</para>
-                <para>画像の図形データは別にJwwMojiを使う。</para>
-            </summary>
-        </member>
-        <member name="T:JwwHelper.JwwImage">
-            <summary>
-同梱画像の実体。オブジェクト作成はコンストラクタではなく、JwwImage.Create()を使います。
-</summary>
-        </member>
-        <member name="M:JwwHelper.JwwDataList.Add(JwwHelper.JwwData)">
-            <summary>
-図形を追加。
-</summary>
-        </member>
-        <member name="M:JwwHelper.JwwDataList.EnumerateDataList(JwwHelper.JwwDataList.EnumerateShapeCallback)">
-            <summary>
-ブロック図形の図形要素を列挙します。[callback]がfalseを返すと列挙を中止します。
-</summary>
-            <param name="callback" />
-            <returns>列挙が中止されるとfalseを返します。</returns>
-        </member>
-        <member name="M:JwwHelper.JwwDataList.GetSize">
-            <summary>
-ブロック図形内の図形数を返します。
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwDataList.m_strName">
-            <summary>
-定義データの名前
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwDataList.m_time">
-            <summary>
-定義された時間
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwDataList.m_bReffered">
-            <summary>
-参照されているかのフラグ
-</summary>
-        </member>
-        <member name="P:JwwHelper.JwwDataList.m_nNumber">
-            <summary>
-定義データの通し番号
-</summary>
-        </member>
-        <member name="M:JwwHelper.JwwDataList.#ctor">
-            <summary>
-コンストラクタ
-</summary>
-        </member>
-        <member name="T:JwwHelper.JwwDataList.EnumerateShapeCallback">
-            <summary>
-DataListの図形を取得するために使う。
-</summary>
-        </member>
-        <member name="T:JwwHelper.JwwDataList">
-            <summary>
-ブロック図形の実体図形のリスト
 </summary>
         </member>
         <member name="P:JwwHelper.JwwHeader.m_adMojiKijunZureY">
@@ -882,6 +830,100 @@ BitMap・ソリッドを最初に描画する //⼗位︓ソリッド描画順
 jwwファイルのヘッダー情報。メンバ詳細は本家のドキュメントを参照すること。
 </summary>
         </member>
+        <member name="P:JwwHelper.JwwClipReader.DataListList">
+            <summary>
+ブロック図形実体のリスト
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwClipReader.DataList">
+            <summary>
+図形のリスト
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwClipReader.Header">
+            <summary>
+クリップボードデータのヘッダー
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwImage.Buffer">
+            <summary>
+イメージバッファー
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwImage.Size">
+            <summary>
+イメージバッファーのサイズ
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwImage.ImageName">
+            <summary>
+ファイル名
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwwImage.Create(System.String,System.Byte[])">
+            <summary>
+                <para>オブジェクト作成。イメージは圧縮される。[imageName]の拡張子は圧縮ありのため".gz"を付ける。</para>
+                <para>画像データはおそらくWindowsのBitmapしか使えない。</para>
+                <para>画像の図形データは別にJwwMojiを使う。</para>
+            </summary>
+        </member>
+        <member name="T:JwwHelper.JwwImage">
+            <summary>
+同梱画像の実体。オブジェクト作成はコンストラクタではなく、JwwImage.Create()を使います。
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwwDataList.Add(JwwHelper.JwwData)">
+            <summary>
+図形を追加。
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwwDataList.EnumerateDataList(JwwHelper.JwwDataList.EnumerateShapeCallback)">
+            <summary>
+ブロック図形の図形要素を列挙します。[callback]がfalseを返すと列挙を中止します。
+</summary>
+            <param name="callback" />
+            <returns>列挙が中止されるとfalseを返します。</returns>
+        </member>
+        <member name="M:JwwHelper.JwwDataList.GetSize">
+            <summary>
+ブロック図形内の図形数を返します。
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwDataList.m_strName">
+            <summary>
+定義データの名前
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwDataList.m_time">
+            <summary>
+定義された時間
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwDataList.m_bReffered">
+            <summary>
+参照されているかのフラグ
+</summary>
+        </member>
+        <member name="P:JwwHelper.JwwDataList.m_nNumber">
+            <summary>
+定義データの通し番号
+</summary>
+        </member>
+        <member name="M:JwwHelper.JwwDataList.#ctor">
+            <summary>
+コンストラクタ
+</summary>
+        </member>
+        <member name="T:JwwHelper.JwwDataList.EnumerateShapeCallback">
+            <summary>
+DataListの図形を取得するために使う。
+</summary>
+        </member>
+        <member name="T:JwwHelper.JwwDataList">
+            <summary>
+ブロック図形の実体図形のリスト
+</summary>
+        </member>
         <member name="P:JwwHelper.JwwData.m_sFlg">
             <summary>
 属性フラグ
@@ -1304,19 +1346,19 @@ Retrieves the bitmap for this render target. The returned bitmap can be used for
         <member name="M:CBitmapRenderTarget.op_Implicit~ID2D1BitmapRenderTarget*">
             <summary>
 Returns ID2D1BitmapRenderTarget interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1BitmapRenderTarget interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CBitmapRenderTarget.GetBitmapRenderTarget">
             <summary>
 Returns ID2D1BitmapRenderTarget interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1BitmapRenderTarget interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CBitmapRenderTarget.Detach">
             <summary>
 Detaches render target interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached render target interface.</returns>
         </member>
         <member name="M:CBitmapRenderTarget.Attach(ID2D1BitmapRenderTarget*)">
@@ -1336,13 +1378,13 @@ A pointer to an ID2D1DCRenderTarget object.
         <member name="M:CDCRenderTarget.op_Implicit~ID2D1DCRenderTarget*">
             <summary>
 Returns ID2D1DCRenderTarget interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1DCRenderTarget interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CDCRenderTarget.GetDCRenderTarget">
             <summary>
 Returns ID2D1DCRenderTarget interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1DCRenderTarget interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CDCRenderTarget.BindDC(CDC!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CRect!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
@@ -1362,7 +1404,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CDCRenderTarget.Detach">
             <summary>
 Detaches render target interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached render target interface.</returns>
         </member>
         <member name="M:CDCRenderTarget.Attach(ID2D1DCRenderTarget*)">
@@ -1429,7 +1471,7 @@ Creates a render target associated with the window </summary>
         <member name="M:CHwndRenderTarget.Detach">
             <summary>
 Detaches render target interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached render target interface.</returns>
         </member>
         <member name="M:CHwndRenderTarget.Attach(ID2D1HwndRenderTarget*)">
@@ -1466,7 +1508,7 @@ A pointer to an ID2D1RenderTarget object.
             <summary>
 Verifies CD2DResource object validity; creates the object if it didn't already exist.</summary>
             <param name="pResource">Pointer to CD2DResource object.</param>
-            <returns> 
+            <returns>
 TRUE is object if valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CRenderTarget.PopAxisAlignedClip">
@@ -1608,7 +1650,7 @@ Draws the formatted text described by the specified IDWriteTextLayout object.</s
             <param name="pBrushForeground">The brush used to paint any text in textLayout that does not already have a brush associated with it as a drawing effect (specified by the IDWriteTextLayout::SetDrawingEffect method).</param>
             <param name="options">A value that indicates whether the text should be snapped to pixel boundaries and whether the text should be clipped to the layout rectangle. The default value is D2D1_DRAW_TEXT_OPTIONS_NONE, which indicates that text should be snapped to pixel boundaries and it should not be clipped to the layout rectangle.</param>
         </member>
-        <member name="M:CRenderTarget.DrawText(ATL.CStringT&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,StrTraitMFC_DLL&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,ATL.ChTraitsCRT&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DRectF!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DBrush*,CD2DTextFormat*,D2D1_DRAW_TEXT_OPTIONS,DWRITE_MEASURING_MODE)">
+        <member name="M:CRenderTarget.DrawText(ATL.CStringT&lt;System.Char,StrTraitMFC_DLL&lt;System.Char,ATL.ChTraitsCRT{System.Char}&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DRectF!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DBrush*,CD2DTextFormat*,D2D1_DRAW_TEXT_OPTIONS,DWRITE_MEASURING_MODE)">
             <summary>
 Draws the specified text using the format information provided by an IDWriteTextFormat object.</summary>
             <param name="strText">A pointer to an array of Unicode characters to draw.</param>
@@ -1704,7 +1746,7 @@ Initiates drawing on this render target.</summary>
         <member name="M:CRenderTarget.Detach">
             <summary>
 Detaches render target interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached render target interface.</returns>
         </member>
         <member name="M:CRenderTarget.Attach(ID2D1RenderTarget*)">
@@ -1715,13 +1757,13 @@ Attaches existing render target interface to the object</summary>
         <member name="M:CRenderTarget.GetMaximumBitmapSize">
             <summary>
 Gets the maximum size, in device-dependent units (pixels), of any one bitmap dimension supported by the render target</summary>
-            <returns> 
+            <returns>
 The maximum size, in pixels, of any one bitmap dimension supported by the render target</returns>
         </member>
         <member name="M:CRenderTarget.IsSupported(D2D1_RENDER_TARGET_PROPERTIES!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
             <summary>
 Indicates whether the render target supports the specified properties</summary>
-            <returns> 
+            <returns>
 TRUE if the specified render target properties are supported by this render target; otherwise, FALSE</returns>
             <param name="renderTargetProperties">The render target properties to test</param>
         </member>
@@ -1740,19 +1782,19 @@ Gets the label for subsequent drawing operations.</summary>
         <member name="M:CRenderTarget.GetPixelSize">
             <summary>
 Returns the size of the render target in device pixels</summary>
-            <returns> 
+            <returns>
 The size of the render target in device pixels</returns>
         </member>
         <member name="M:CRenderTarget.GetPixelFormat">
             <summary>
 Retrieves the pixel format and alpha mode of the render target</summary>
-            <returns> 
+            <returns>
 The pixel format and alpha mode of the render target</returns>
         </member>
         <member name="M:CRenderTarget.GetDpi">
             <summary>
 Returns the render target's dots per inch (DPI)</summary>
-            <returns> 
+            <returns>
 The render target's dots per inch (DPI).</returns>
         </member>
         <member name="M:CRenderTarget.SetDpi(CD2DSizeF!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
@@ -1763,31 +1805,31 @@ Sets the dots per inch (DPI) of the render target.</summary>
         <member name="M:CRenderTarget.GetSize">
             <summary>
 Returns the size of the render target in device-independent pixels</summary>
-            <returns> 
+            <returns>
 The current size of the render target in device-independent pixels</returns>
         </member>
         <member name="M:CRenderTarget.op_Implicit~ID2D1RenderTarget*">
             <summary>
 Returns ID2D1RenderTarget interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1RenderTarget interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CRenderTarget.GetRenderTarget">
             <summary>
 Returns ID2D1RenderTarget interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1RenderTarget interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CRenderTarget.IsValid">
             <summary>
 Checks resource validity</summary>
-            <returns> 
+            <returns>
 TRUE if resource is valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CRenderTarget.Destroy(System.Int32)">
             <summary>
 Deletes one or more resources</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE</returns>
             <param name="bDeleteResources">If bDeleteResources is TRUE, all resources located in m_lstResources will be automatically destroyed.</param>
         </member>
@@ -1813,7 +1855,7 @@ A pointer to an ID2D1Mesh.
         <member name="M:CD2DMesh.IsValid">
             <summary>
 Checks resource validity</summary>
-            <returns> 
+            <returns>
 TRUE if resource is valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CD2DMesh.Destroy">
@@ -1836,19 +1878,19 @@ A pointer to an ID2D1TessellationSink that is used to populate the mesh.</return
         <member name="M:CD2DMesh.op_Implicit~ID2D1Mesh*">
             <summary>
 Returns ID2D1Mesh interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1Mesh interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DMesh.Get">
             <summary>
 Returns ID2D1Mesh interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1Mesh interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DMesh.Detach">
             <summary>
 Detaches resource interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached resource interface.</returns>
         </member>
         <member name="M:CD2DMesh.Attach(ID2D1Mesh*)">
@@ -1890,7 +1932,7 @@ Specifies the method used to determine which points are inside the geometry desc
         <member name="M:CD2DGeometrySink.Close">
             <summary>
 Closes the geometry sink</summary>
-            <returns> 
+            <returns>
 Nonzero if successful; otherwise FALSE.</returns>
         </member>
         <member name="M:CD2DGeometrySink.AddLines(CArray&lt;CD2DPointF,CD2DPointF&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
@@ -1942,19 +1984,19 @@ Starts a new figure at the specified point.</summary>
         <member name="M:CD2DGeometrySink.op_Implicit~ID2D1GeometrySink*">
             <summary>
 Returns ID2D1GeometrySink interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1GeometrySink interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DGeometrySink.Get">
             <summary>
 Returns ID2D1GeometrySink interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1GeometrySink interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DGeometrySink.IsValid">
             <summary>
 Checks geometry sink validity</summary>
-            <returns> 
+            <returns>
 TRUE if geometry sink is valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CD2DGeometrySink.Dispose">
@@ -1980,13 +2022,13 @@ A pointer to an ID2D1PathGeometry.
         <member name="M:CD2DPathGeometry.GetFigureCount">
             <summary>
 Retrieves tthe number of figures in the path geometry.</summary>
-            <returns> 
+            <returns>
 Returns the number of figures in the path geometry.</returns>
         </member>
         <member name="M:CD2DPathGeometry.GetSegmentCount">
             <summary>
 Retrieves the number of segments in the path geometry.</summary>
-            <returns> 
+            <returns>
 Returns the number of segments in the path geometry.</returns>
         </member>
         <member name="M:CD2DPathGeometry.Stream(ID2D1GeometrySink*)">
@@ -2005,7 +2047,7 @@ A pointer to the ID2D1GeometrySink that is used to populate the path geometry wi
         <member name="M:CD2DPathGeometry.Detach">
             <summary>
 Detaches resource interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached resource interface.</returns>
         </member>
         <member name="M:CD2DPathGeometry.Attach(ID2D1PathGeometry*)">
@@ -2043,7 +2085,7 @@ A pointer to an ID2D1Geometry.
         <member name="M:CD2DGeometry.Widen(System.Single,ID2D1StrokeStyle*,D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,ID2D1SimplifiedGeometrySink*,System.Single)">
             <summary>
 Widens the geometry by the specified stroke and writes the result to an ID2D1SimplifiedGeometrySink after it has been transformed by the specified matrix and flattened using the specified tolerance.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="strokeWidth">The amount by which to widen the geometry.</param>
             <param name="strokeStyle">The style of stroke to apply to the geometry, or NULL.</param>
@@ -2054,7 +2096,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.Tessellate(D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,ID2D1TessellationSink*,System.Single)">
             <summary>
 Creates a set of clockwise-wound triangles that cover the geometry after it has been transformed using the specified matrix and flattened using the specified tolerance.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="worldTransform">The transform to apply to this geometry, or NULL.</param>
             <param name="tessellationSink">The ID2D1TessellationSink to which the tessellated is appended.</param>
@@ -2063,7 +2105,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.Simplify(D2D1_GEOMETRY_SIMPLIFICATION_OPTION,D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,ID2D1SimplifiedGeometrySink*,System.Single)">
             <summary>
 Creates a simplified version of the geometry that contains only lines and (optionally) cubic Bezier curves and writes the result to an ID2D1SimplifiedGeometrySink.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="simplificationOption">A value that specifies whether the simplified geometry should contain curves.</param>
             <param name="worldTransform">The transform to apply to the simplified geometry.</param>
@@ -2073,7 +2115,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.Outline(D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,ID2D1SimplifiedGeometrySink*,System.Single)">
             <summary>
 Computes the outline of the geometry and writes the result to an ID2D1SimplifiedGeometrySink.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="worldTransform">The transform to apply to the geometry outline.</param>
             <param name="geometrySink">The ID2D1SimplifiedGeometrySink to which the geometry transformed outline is appended.</param>
@@ -2082,7 +2124,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.StrokeContainsPoint(CD2DPointF,System.Single,ID2D1StrokeStyle*,D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32*,System.Single)">
             <summary>
 Determines whether the geometry's stroke contains the specified point given the specified stroke thickness, style, and transform.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="point">The point to test for containment.</param>
             <param name="strokeWidth">The thickness of the stroke to apply.</param>
@@ -2094,7 +2136,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.FillContainsPoint(CD2DPointF,D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32*,System.Single)">
             <summary>
 Indicates whether the area filled by the geometry would contain the specified point given the specified flattening tolerance.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="point">The point to test.</param>
             <param name="worldTransform">The transform to apply to the geometry prior to testing for containment.</param>
@@ -2104,7 +2146,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.GetWidenedBounds(System.Single,ID2D1StrokeStyle*,D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DRectF*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Single)">
             <summary>
 Gets the bounds of the geometry after it has been widened by the specified stroke width and style and transformed by the specified matrix.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="strokeWidth">The amount by which to widen the geometry by stroking its outline.</param>
             <param name="strokeStyle">The style of the stroke that widens the geometry.</param>
@@ -2115,7 +2157,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.GetBounds(D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DRectF*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
             <summary>
 Retrieves the bounds of the geometry.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="worldTransform">The transform to apply to this geometry before calculating its bounds.</param>
             <param name="bounds">When this method returns, contains the bounds of this geometry. If the bounds are empty, this will be a rect where bounds.left is greater than bounds.right. You must allocate storage for this parameter.</param>
@@ -2123,7 +2165,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.ComputePointAtLength(System.Single,D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DPointF*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DPointF*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Single)">
             <summary>
 Calculates the point and tangent vector at the specified distance along the geometry after it has been transformed by the specified matrix and flattened using the specified tolerance.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="length">The distance along the geometry of the point and tangent to find. If this distance is less then 0, this method calculates the first point in the geometry. If this distance is greater than the length of the geometry, this method calculates the last point in the geometry.</param>
             <param name="worldTransform">The transform to apply to the geometry before calculating the specified point and tangent.</param>
@@ -2134,7 +2176,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.ComputeLength(D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Single*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Single)">
             <summary>
 Calculates the length of the geometry as though each segment were unrolled into a line.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="worldTransform">The transform to apply to the geometry before calculating its length.</param>
             <param name="length">When this method returns, contains a pointer to the length of the geometry. For closed geometries, the length includes an implicit closing segment. You must allocate storage for this parameter.</param>
@@ -2143,7 +2185,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.ComputeArea(D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Single*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Single)">
             <summary>
 Computes the area of the geometry after it has been transformed by the specified matrix and flattened using the specified tolerance.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="worldTransform">The transform to apply to this geometry before computing its area.</param>
             <param name="area">When this method returns, contains a pointer to the area of the transformed, flattened version of this geometry. You must allocate storage for this parameter.</param>
@@ -2152,7 +2194,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.CompareWithGeometry(CD2DGeometry*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Single)">
             <summary>
 Describes the intersection between this geometry and the specified geometry. The comparison is performed using the specified flattening tolerance.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="inputGeometry">The geometry to test.</param>
             <param name="inputGeometryTransform">The transform to apply to inputGeometry.</param>
@@ -2161,7 +2203,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.CombineWithGeometry(CD2DGeometry*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,D2D1_COMBINE_MODE,D2D_MATRIX_3X2_F!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,ID2D1SimplifiedGeometrySink*,System.Single)">
             <summary>
 Combines this geometry with the specified geometry and stores the result in an ID2D1SimplifiedGeometrySink.</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
             <param name="inputGeometry">The geometry to combine with this instance.</param>
             <param name="combineMode">The type of combine operation to perform.</param>
@@ -2172,7 +2214,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE.</returns>
         <member name="M:CD2DGeometry.IsValid">
             <summary>
 Checks resource validity</summary>
-            <returns> 
+            <returns>
 TRUE if resource is valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CD2DGeometry.Destroy">
@@ -2182,19 +2224,19 @@ Destroys a CD2DGeometry object.</summary>
         <member name="M:CD2DGeometry.op_Implicit~ID2D1Geometry*">
             <summary>
 Returns ID2D1Geometry interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1Geometry interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DGeometry.Get">
             <summary>
 Returns ID2D1Geometry interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1Geometry interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DGeometry.Detach">
             <summary>
 Detaches resource interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached resource interface.</returns>
         </member>
         <member name="M:CD2DGeometry.Attach(ID2D1Geometry*)">
@@ -2242,7 +2284,7 @@ CString object that contains the current font family name.</returns>
         <member name="M:CD2DTextLayout.SetLocaleName(System.Char!System.Runtime.CompilerServices.IsConst*,DWRITE_TEXT_RANGE)">
             <summary>
 Sets the locale name for text within a specified text range</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE</returns>
             <param name="pwzLocaleName">A null-terminated locale name string</param>
             <param name="textRange">Text range to which this change applies</param>
@@ -2250,7 +2292,7 @@ If the method succeeds, it returns TRUE. Otherwise, it returns FALSE</returns>
         <member name="M:CD2DTextLayout.SetFontFamilyName(System.Char!System.Runtime.CompilerServices.IsConst*,DWRITE_TEXT_RANGE)">
             <summary>
 Sets null-terminated font family name for text within a specified text range</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns TRUE. Otherwise, it returns FALSE</returns>
             <param name="pwzFontFamilyName">The font family name that applies to the entire text string within the range specified by textRange</param>
             <param name="textRange">Text range to which this change applies</param>
@@ -2270,7 +2312,7 @@ Pointer to an IDWriteTextLayout interface or NULL if object is not initialized y
         <member name="M:CD2DTextLayout.IsValid">
             <summary>
 Checks resource validity</summary>
-            <returns> 
+            <returns>
 TRUE if resource is valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CD2DTextLayout.Destroy">
@@ -2296,7 +2338,7 @@ If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error 
 The destructor. Called when a D2D text layout object is being destroyed.
 </summary>
         </member>
-        <member name="M:CD2DTextLayout.#ctor(CRenderTarget*,ATL.CStringT&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,StrTraitMFC_DLL&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,ATL.ChTraitsCRT&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DTextFormat*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DSizeF!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32)">
+        <member name="M:CD2DTextLayout.#ctor(CRenderTarget*,ATL.CStringT&lt;System.Char,StrTraitMFC_DLL&lt;System.Char,ATL.ChTraitsCRT{System.Char}&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DTextFormat*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,CD2DSizeF!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32)">
             <summary>
 Constructs a CD2DTextLayout object.</summary>
             <param name="pParentTarget">A pointer to the render target.</param>
@@ -2336,13 +2378,13 @@ Pointer to an IDWriteTextFormat interface or NULL if object is not initialized y
         <member name="M:CD2DTextFormat.Get">
             <summary>
 Returns IDWriteTextFormat interface</summary>
-            <returns> 
+            <returns>
 Pointer to an IDWriteTextFormat interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DTextFormat.IsValid">
             <summary>
 Checks resource validity</summary>
-            <returns> 
+            <returns>
 TRUE if resource is valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CD2DTextFormat.Destroy">
@@ -2368,7 +2410,7 @@ If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error 
 The destructor. Called when a D2D text format object is being destroyed.
 </summary>
         </member>
-        <member name="M:CD2DTextFormat.#ctor(CRenderTarget*,ATL.CStringT&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,StrTraitMFC_DLL&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,ATL.ChTraitsCRT&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Single,DWRITE_FONT_WEIGHT,DWRITE_FONT_STYLE,DWRITE_FONT_STRETCH,ATL.CStringT&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,StrTraitMFC_DLL&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,ATL.ChTraitsCRT&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices">
+        <member name="M:CD2DTextFormat.#ctor(CRenderTarget*,ATL.CStringT&lt;System.Char,StrTraitMFC_DLL&lt;System.Char,ATL.ChTraitsCRT{System.Char}&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Single,DWRITE_FONT_WEIGHT,DWRITE_FONT_STYLE,DWRITE_FONT_STRETCH,ATL.CStringT&lt;System.Char,StrTraitMFC_DLL&lt;System.Char,ATL.ChTraitsCRT{System.Char}&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,IDWriteFontCollection*,System.Int32)">
             <summary>
 Constructs a CD2DTextFormat object.</summary>
             <param name="pParentTarget">A pointer to the render target.</param>
@@ -2399,25 +2441,25 @@ The center, gradient origin offset, and x-radius and y-radius of the brush's gra
         <member name="M:CD2DRadialGradientBrush.GetRadiusY">
             <summary>
 Retrieves the y-radius of the gradient ellipse</summary>
-            <returns> 
+            <returns>
 The y-radius of the gradient ellipse. This value is expressed in the brush's coordinate space</returns>
         </member>
         <member name="M:CD2DRadialGradientBrush.GetRadiusX">
             <summary>
 Retrieves the x-radius of the gradient ellipse</summary>
-            <returns> 
+            <returns>
 The x-radius of the gradient ellipse. This value is expressed in the brush's coordinate space</returns>
         </member>
         <member name="M:CD2DRadialGradientBrush.GetGradientOriginOffset">
             <summary>
 Retrieves the offset of the gradient origin relative to the gradient ellipse's center</summary>
-            <returns> 
+            <returns>
 The offset of the gradient origin from the center of the gradient ellipse. This value is expressed in the brush's coordinate space</returns>
         </member>
         <member name="M:CD2DRadialGradientBrush.GetCenter">
             <summary>
 Retrieves the center of the gradient ellipse</summary>
-            <returns> 
+            <returns>
 The center of the gradient ellipse. This value is expressed in the brush's coordinate space</returns>
         </member>
         <member name="M:CD2DRadialGradientBrush.SetRadiusY(System.Single)">
@@ -2443,19 +2485,19 @@ Specifies the center of the gradient ellipse in the brush's coordinate space</su
         <member name="M:CD2DRadialGradientBrush.op_Implicit~ID2D1RadialGradientBrush*">
             <summary>
 Returns ID2D1RadialGradientBrush interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1RadialGradientBrush interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DRadialGradientBrush.Get">
             <summary>
 Returns ID2D1RadialGradientBrush interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1RadialGradientBrush interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DRadialGradientBrush.Detach">
             <summary>
 Detaches resource interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached resource interface.</returns>
         </member>
         <member name="M:CD2DRadialGradientBrush.Attach(ID2D1RadialGradientBrush*)">
@@ -2509,13 +2551,13 @@ The start and end points of the gradient.
         <member name="M:CD2DLinearGradientBrush.GetEndPoint">
             <summary>
 Retrieves the ending coordinates of the linear gradient</summary>
-            <returns> 
+            <returns>
 The ending two-dimensional coordinates of the linear gradient, in the brush's coordinate space</returns>
         </member>
         <member name="M:CD2DLinearGradientBrush.GetStartPoint">
             <summary>
 Retrieves the starting coordinates of the linear gradient</summary>
-            <returns> 
+            <returns>
 The starting two-dimensional coordinates of the linear gradient, in the brush's coordinate space</returns>
         </member>
         <member name="M:CD2DLinearGradientBrush.SetEndPoint(CD2DPointF)">
@@ -2531,19 +2573,19 @@ Sets the starting coordinates of the linear gradient in the brush's coordinate s
         <member name="M:CD2DLinearGradientBrush.op_Implicit~ID2D1LinearGradientBrush*">
             <summary>
 Returns ID2D1LinearGradientBrush interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1LinearGradientBrush interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DLinearGradientBrush.Get">
             <summary>
 Returns ID2D1LinearGradientBrush interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1LinearGradientBrush interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DLinearGradientBrush.Detach">
             <summary>
 Detaches resource interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached resource interface.</returns>
         </member>
         <member name="M:CD2DLinearGradientBrush.Attach(ID2D1LinearGradientBrush*)">
@@ -2663,19 +2705,19 @@ If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error 
         <member name="M:CD2DBitmapBrush.GetInterpolationMode">
             <summary>
 Gets the interpolation method used when the brush bitmap is scaled or rotated</summary>
-            <returns> 
+            <returns>
 The interpolation method used when the brush bitmap is scaled or rotated</returns>
         </member>
         <member name="M:CD2DBitmapBrush.GetExtendModeY">
             <summary>
 Gets the method by which the brush vertically tiles those areas that extend past its bitmap</summary>
-            <returns> 
+            <returns>
 A value that specifies how the brush vertically tiles those areas that extend past its bitmap</returns>
         </member>
         <member name="M:CD2DBitmapBrush.GetExtendModeX">
             <summary>
 Gets the method by which the brush horizontally tiles those areas that extend past its bitmap</summary>
-            <returns> 
+            <returns>
 A value that specifies how the brush horizontally tiles those areas that extend past its bitmap</returns>
         </member>
         <member name="M:CD2DBitmapBrush.SetBitmap(CD2DBitmap*)">
@@ -2701,25 +2743,25 @@ Specifies how the brush horizontally tiles those areas that extend past its bitm
         <member name="M:CD2DBitmapBrush.GetBitmap">
             <summary>
 Gets the bitmap source that this brush uses to paint</summary>
-            <returns> 
+            <returns>
 Pointer to an CD2DBitmap object or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DBitmapBrush.op_Implicit~ID2D1BitmapBrush*">
             <summary>
 Returns ID2D1BitmapBrush interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1BitmapBrush interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DBitmapBrush.Get">
             <summary>
 Returns ID2D1BitmapBrush interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1BitmapBrush interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DBitmapBrush.Detach">
             <summary>
 Detaches resource interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached resource interface.</returns>
         </member>
         <member name="M:CD2DBitmapBrush.Attach(ID2D1BitmapBrush*)">
@@ -2732,7 +2774,7 @@ Attaches existing resource interface to the object</summary>
 The destructor. Called when a D2D bitmap brush object is being destroyed.
 </summary>
         </member>
-        <member name="M:CD2DBitmapBrush.#ctor(CRenderTarget*,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,CD2DSizeU,D2D1_BITMAP_BRUSH_PROPERTIES*,CD2DBrushProperties*,System.Int32)">
+        <member name="M:CD2DBitmapBrush.#ctor(CRenderTarget*,System.Char!System.Runtime.CompilerServices.IsConst*,CD2DSizeU,D2D1_BITMAP_BRUSH_PROPERTIES*,CD2DBrushProperties*,System.Int32)">
             <summary>
 Constructs a CD2DBitmapBrush object from file.</summary>
             <param name="pParentTarget">A pointer to the render target.</param>
@@ -2742,7 +2784,7 @@ Constructs a CD2DBitmapBrush object from file.</summary>
             <param name="pBrushProperties">A pointer to the opacity and transformation of a brush.</param>
             <param name="bAutoDestroy">Indicates that the object will be destroyed by owner (pParentTarget).</param>
         </member>
-        <member name="M:CD2DBitmapBrush.#ctor(CRenderTarget*,System.UInt32,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,CD2DSizeU,D2D1_BITMAP_BRUSH_PROPERTIES*,CD2DBrushProperties*,System.Int32)">
+        <member name="M:CD2DBitmapBrush.#ctor(CRenderTarget*,System.UInt32,System.Char!System.Runtime.CompilerServices.IsConst*,CD2DSizeU,D2D1_BITMAP_BRUSH_PROPERTIES*,CD2DBrushProperties*,System.Int32)">
             <summary>
 Constructs a CD2DBitmapBrush object from resource.</summary>
             <param name="pParentTarget">A pointer to the render target.</param>
@@ -2790,7 +2832,7 @@ If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error 
         <member name="M:CD2DSolidColorBrush.GetColor">
             <summary>
 Retrieves the color of the solid color brush</summary>
-            <returns> 
+            <returns>
 The color of this solid color brush</returns>
         </member>
         <member name="M:CD2DSolidColorBrush.SetColor(_D3DCOLORVALUE)">
@@ -2801,19 +2843,19 @@ Specifies the color of this solid color brush</summary>
         <member name="M:CD2DSolidColorBrush.op_Implicit~ID2D1SolidColorBrush*">
             <summary>
 Returns ID2D1SolidColorBrush interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1SolidColorBrush interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DSolidColorBrush.Get">
             <summary>
 Returns ID2D1SolidColorBrush interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1SolidColorBrush interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DSolidColorBrush.Detach">
             <summary>
 Detaches resource interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached resource interface.</returns>
         </member>
         <member name="M:CD2DSolidColorBrush.Attach(ID2D1SolidColorBrush*)">
@@ -2871,7 +2913,7 @@ Applies the specified transform to the render target, replacing the existing tra
         <member name="M:CD2DBrush.GetOpacity">
             <summary>
 Gets the degree of opacity of this brush</summary>
-            <returns> 
+            <returns>
 A value between zero and 1 that indicates the opacity of the brush. This value is a constant multiplier that linearly scales the alpha value of all pixels filled by the brush. The opacity values are clamped in the range 0 to 1 before they are multiplied together</returns>
         </member>
         <member name="M:CD2DBrush.SetOpacity(System.Single)">
@@ -2886,25 +2928,25 @@ Destroys a CD2DBrush object.</summary>
         <member name="M:CD2DBrush.op_Implicit~ID2D1Brush*">
             <summary>
 Returns ID2D1Brush interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1Brush interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DBrush.Get">
             <summary>
 Returns ID2D1Brush interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1Brush interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DBrush.IsValid">
             <summary>
 Checks resource validity</summary>
-            <returns> 
+            <returns>
 TRUE if resource is valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CD2DBrush.Detach">
             <summary>
 Detaches resource interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached resource interface.</returns>
         </member>
         <member name="M:CD2DBrush.Attach(ID2D1Brush*)">
@@ -3006,25 +3048,25 @@ Initializes the object</summary>
         <member name="M:CD2DBitmap.op_Implicit~ID2D1Bitmap*">
             <summary>
 Returns ID2D1Bitmap interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1Bitmap interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DBitmap.Get">
             <summary>
 Returns ID2D1Bitmap interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1Bitmap interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DBitmap.IsValid">
             <summary>
 Checks resource validity</summary>
-            <returns> 
+            <returns>
 TRUE if resource is valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CD2DBitmap.CopyFromMemory(System.Void!System.Runtime.CompilerServices.IsConst*,System.UInt32,CD2DRectU!System.Runtime.CompilerServices.IsConst*)">
             <summary>
 Copies the specified region from memory into the current bitmap</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error code.</returns>
             <param name="srcData">The data to copy</param>
             <param name="pitch">The stride, or pitch, of the source bitmap stored in srcData. The stride is the byte count of a scanline (one row of pixels in memory). The stride can be computed from the following formula: pixel width * bytes per pixel + memory padding</param>
@@ -3033,7 +3075,7 @@ If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error 
         <member name="M:CD2DBitmap.CopyFromRenderTarget(CRenderTarget!System.Runtime.CompilerServices.IsConst*,CD2DPointU!System.Runtime.CompilerServices.IsConst*,CD2DRectU!System.Runtime.CompilerServices.IsConst*)">
             <summary>
 Copies the specified region from the specified render target into the current bitmap</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error code.</returns>
             <param name="pRenderTarget">The render target that contains the region to copy</param>
             <param name="destPoint">In the current bitmap, the upper-left corner of the area to which the region specified by srcRect is copied</param>
@@ -3042,7 +3084,7 @@ If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error 
         <member name="M:CD2DBitmap.CopyFromBitmap(CD2DBitmap!System.Runtime.CompilerServices.IsConst*,CD2DPointU!System.Runtime.CompilerServices.IsConst*,CD2DRectU!System.Runtime.CompilerServices.IsConst*)">
             <summary>
 Copies the specified region from the specified bitmap into the current bitmap</summary>
-            <returns> 
+            <returns>
 If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error code.</returns>
             <param name="pBitmap">The bitmap to copy from</param>
             <param name="destPoint">In the current bitmap, the upper-left corner of the area to which the region specified by srcRect is copied</param>
@@ -3051,31 +3093,31 @@ If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error 
         <member name="M:CD2DBitmap.GetDPI">
             <summary>
 Return the dots per inch (DPI) of the bitmap</summary>
-            <returns> 
+            <returns>
 The horizontal and vertical DPI of the bitmap.</returns>
         </member>
         <member name="M:CD2DBitmap.GetPixelFormat">
             <summary>
 Retrieves the pixel format and alpha mode of the bitmap</summary>
-            <returns> 
+            <returns>
 The pixel format and alpha mode of the bitmap.</returns>
         </member>
         <member name="M:CD2DBitmap.GetPixelSize">
             <summary>
 Returns the size, in device-dependent units (pixels), of the bitmap</summary>
-            <returns> 
+            <returns>
 The size, in pixels, of the bitmap..</returns>
         </member>
         <member name="M:CD2DBitmap.GetSize">
             <summary>
 Returns the size, in device-independent pixels (DIPs), of the bitmap</summary>
-            <returns> 
+            <returns>
 The size, in DIPs, of the bitmap.</returns>
         </member>
         <member name="M:CD2DBitmap.Detach">
             <summary>
 Detaches resource interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached resource interface.</returns>
         </member>
         <member name="M:CD2DBitmap.Attach(ID2D1Bitmap*)">
@@ -3102,7 +3144,7 @@ Constructs a CD2DBitmap object from HBITMAP.</summary>
             <param name="sizeDest">Destination size of the bitmap.</param>
             <param name="bAutoDestroy">Indicates that the object will be destroyed by owner (pParentTarget).</param>
         </member>
-        <member name="M:CD2DBitmap.#ctor(CRenderTarget*,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,CD2DSizeU,System.Int32)">
+        <member name="M:CD2DBitmap.#ctor(CRenderTarget*,System.Char!System.Runtime.CompilerServices.IsConst*,CD2DSizeU,System.Int32)">
             <summary>
 Constructs a CD2DBitmap object from file.</summary>
             <param name="pParentTarget">A pointer to the render target.</param>
@@ -3110,7 +3152,7 @@ Constructs a CD2DBitmap object from file.</summary>
             <param name="sizeDest">Destination size of the bitmap.</param>
             <param name="bAutoDestroy">Indicates that the object will be destroyed by owner (pParentTarget).</param>
         </member>
-        <member name="M:CD2DBitmap.#ctor(CRenderTarget*,System.UInt32,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,CD2DSizeU,System.Int32)">
+        <member name="M:CD2DBitmap.#ctor(CRenderTarget*,System.UInt32,System.Char!System.Runtime.CompilerServices.IsConst*,CD2DSizeU,System.Int32)">
             <summary>
 Constructs a CD2DBitmap object from resource.</summary>
             <param name="pParentTarget">A pointer to the render target.</param>
@@ -3143,7 +3185,7 @@ If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error 
         <member name="M:CD2DLayer.Detach">
             <summary>
 Detaches resource interface from the object</summary>
-            <returns> 
+            <returns>
 Pointer to detached resource interface.</returns>
         </member>
         <member name="M:CD2DLayer.Attach(ID2D1Layer*)">
@@ -3154,25 +3196,25 @@ Attaches existing resource interface to the object</summary>
         <member name="M:CD2DLayer.op_Implicit~ID2D1Layer*">
             <summary>
 Returns ID2D1Layer interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1Layer interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DLayer.Get">
             <summary>
 Returns ID2D1Layer interface</summary>
-            <returns> 
+            <returns>
 Pointer to an ID2D1Layer interface or NULL if object is not initialized yet.</returns>
         </member>
         <member name="M:CD2DLayer.IsValid">
             <summary>
 Checks resource validity</summary>
-            <returns> 
+            <returns>
 TRUE if resource is valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CD2DLayer.GetSize">
             <summary>
 Returns the size of the render target in device-independent pixels</summary>
-            <returns> 
+            <returns>
 The current size of the render target in device-independent pixels</returns>
         </member>
         <member name="M:CD2DLayer.Dispose">
@@ -3202,7 +3244,7 @@ Resource will be destoyed by owner (CRenderTarget)</summary>
         <member name="M:CD2DResource.IsValid">
             <summary>
 Checks resource validity</summary>
-            <returns> 
+            <returns>
 TRUE if resource is valid; otherwise FALSE.</returns>
         </member>
         <member name="M:CD2DResource.Destroy">
